@@ -1,10 +1,10 @@
 import React from "react";
-import './MyPosts.css';
+import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = () => {
     return (
-        <div className='marpad'>
+        <div className={s.module}>
         my posts
            <div>
                <textarea></textarea>
@@ -16,7 +16,7 @@ const MyPosts = () => {
         </div>
         <div>
           <Post message='How are you?' />
-          <div className='marpad'>
+          <div className={s.marpad}>
             post 2
           </div>
         </div>

@@ -1,10 +1,10 @@
 import React from "react";
-import './Post.css';
+import s from './Post.module.css';
 
 
 const Post = (props) => {
     return (
-        <div className='marpad'>
+        <div className={s.marpad}>
             <img src='https://img.championat.com/c/900x900/news/big/x/n/frenk-lempard-glavnyj-trener-fk-chelsi_15622361251229279030.jpg' />
             {props.message}
             <div>

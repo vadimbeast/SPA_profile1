@@ -1,23 +1,27 @@
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import React from "react";
-import './Navbar.css';
+import { NavLink } from "react-router-dom";
+import s from './Navbar.module.css';
+
+/*{ navData => navData.isActive ? s.active : s.item }*/
 
 const Navbar = () => {
     return (
-        <nav className='nav'>
-        <div className='item'>
-          <a href="/profile">Profile</a>
+        <nav className={s.nav}>
+        <div className={s.item}>
+          <NavLink to="/profile" className={ navData => navData.isActive ? s.active : s.item }>Profile</NavLink>
         </div>
-        <div className='item'>
-          <a href="/dialogs">Messages</a>
+        <div className={s.item}>
+          <NavLink to="/dialogs" className={navData => navData.isActive ? s.active : s.item}>Messages</NavLink>
         </div>
-        <div className='item'>
-          <a href="/news">News</a>
+        <div className={s.item}>
+          <NavLink to="/news" className={navData => navData.isActive ? s.active : s.item}>News</NavLink>
         </div>
-        <div className='item'>
-          <a href="/music">Music</a>
+        <div className={s.item}>
+          <NavLink to="/music" className={navData => navData.isActive ? s.active : s.item}>Music</NavLink>
         </div>
-        <div className='item'>
-          <a href="/settings">Settings</a>
+        <div className={s.item}>
+          <NavLink to="/settings" className={navData => navData.isActive ? s.active : s.item}>Settings</NavLink>
         </div>
       </nav>
     );
