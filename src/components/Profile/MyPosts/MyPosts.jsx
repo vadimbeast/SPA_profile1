@@ -4,19 +4,23 @@ import Post from './Post/Post';
 
 const MyPosts = () => {
     return (
-        <div className={s.module}>
-        my posts
+        <div className={s.postBlock}>
+        <h3>My post</h3>
            <div>
                <textarea></textarea>
-               <button>Add post</button>
+               <div>
+                   <button>Add post</button>
+               </div>
+               
                <button>Remove</button>
+               
            </div>
         <div>
           new post 
         </div>
         <div>
           <Post message='How are you?' />
-          <div className={s.marpad}>
+          <div className={s.postBlock}>
             post 2
           </div>
         </div>
