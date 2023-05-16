@@ -1,11 +1,12 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 3fr 10fr;
     padding: 15px;
 }
 
 .dialogsItems {
     padding: 10px;
+    border-right: 3px solid rgb(7, 219, 166);
 }
 
 .dialog {
@@ -20,6 +21,9 @@
     padding: 10px;
 }
 
-.message {}
-
+.dialogs img {
+    width: 50px;
+    height: 50px;
+    border-radius: 40px
+}
 
