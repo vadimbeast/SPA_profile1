@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -24,7 +23,10 @@ const App = (props) => {
           <Route path='/dialogs/*' element = {<Dialogs dialogs={props.state.dialogsPage.dialogs} 
                                                        messages={props.state.dialogsPage.messages}
                                                        avatar={props.state.dialogsPage.avatar}/> }/>
-          <Route path='/profile/*' element = { <Profile postData={props.state.profilePage.postData}/> } />
+          <Route path='/profile/*' element = { <Profile 
+                                                 profilePage={props.state.profilePage} 
+                                                 addPost={props.addPost}
+                                                 updateNewPostText={props.updateNewPostText} /> }/>
           <Route path='/news/*' element={ <News /> } />
           <Route path='/music/*' element={ <Music /> } />
           <Route path='/settings/*' element={ <Settings /> } />

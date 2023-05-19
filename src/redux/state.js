@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from "../render";
+
 let state = {
 
     profilePage: {
@@ -12,10 +14,12 @@ let state = {
 
           postData: [
             {id: 1, message: 'Hi, how are you?', likesCount: 12},
-            {id: 2, message: 'It is me first post', likesCount: 7},
+            {id: 2, message: 'It is my first post', likesCount: 7},
             {id: 3, message: 'Tratata', likesCount: 12},
             {id: 4, message: 'Bla-bla-bla', likesCount: 7}   
-          ]
+          ],
+
+          newPostText: 'Введите текст...'
     },
 
     dialogsPage: {
@@ -44,6 +48,25 @@ let state = {
             {id: 6, urlImage: "https://happypik.ru/wp-content/uploads/2019/09/njashnye-kotiki8.jpg"}
         ]  
     } 
+}
+
+window.state = state;
+
+export let addPost = () => {
+    let newPost = {
+        id: 5,
+        message: state.profilePage.newPostText,
+        likesCount: 0
+    };
+
+    state.profilePage.postData.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderEntireTree(state);
+}
+
+export let updateNewPostText = (text) => {
+    state.profilePage.newPostText = text;
+    rerenderEntireTree(state);
 }
 
 export default state;
