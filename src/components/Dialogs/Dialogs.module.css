@@ -27,3 +27,27 @@
     border-radius: 40px
 }
 
+.textarea {
+    width: 600px;
+    height: 70px;
+    margin-left: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.buttonStyle {
+    width: 90px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 20px;
+    border-color: rgb(7, 219, 166);
+    border-radius: 10px;
+    background-color: purple;
+    color: white;
+}
+
+.buttonStyle:hover {
+    background-color: rgb(7, 219, 166);
+    color: purple;
+    border-color: purple;
+}
