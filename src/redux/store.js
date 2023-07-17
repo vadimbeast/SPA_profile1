@@ -44,6 +44,10 @@ let store = {
             ],
             
             newMessageText: 'Введите новое сообщение...'
+        },
+
+        sidebar: {
+            
         }
     },
 
