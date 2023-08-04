@@ -5,7 +5,6 @@ import Dialogs from "./Dialogs";
 
 
 let mapStateToProps = (state) => {
-
     return {
         messages: state.dialogsPage.messages,
         dialogs: state.dialogsPage.dialogs,

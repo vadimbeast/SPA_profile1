@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./DialogItem.module.css";
 import { NavLink } from "react-router-dom";
-import AvatarItems from "../AvatarItems/AvatarItems.jsx";
 
 
 const DialogItem = (props) => {

@@ -40,7 +40,8 @@ const Dialogs = (props) => {
                <textarea className={ s.textarea }
                          onChange={ onMessageChange }
                          ref={ newMessageElement }
-                         placeholder={props.newMessageText}></textarea>
+                         placeholder={props.newMessageText}
+                         value = {props.newMessageText}></textarea>
                <div>
                    <button className={ s.buttonStyle }
                            onClick={ addMessage }>Send</button>

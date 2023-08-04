@@ -1,9 +1,7 @@
-import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import s from './Navbar.module.css';
 
-/*{ navData => navData.isActive ? s.active : s.item }*/
 
 const Navbar = () => {
     return (
@@ -13,6 +11,9 @@ const Navbar = () => {
         </div>
         <div className={s.item}>
           <NavLink to="/dialogs" className={navData => navData.isActive ? s.active : s.item}>Messages</NavLink>
+        </div>
+        <div className={s.item}>
+          <NavLink to='/users' className={ navData => navData.isActive ? s.active : s.item } >Users</NavLink>
         </div>
         <div className={s.item}>
           <NavLink to="/news" className={navData => navData.isActive ? s.active : s.item}>News</NavLink>

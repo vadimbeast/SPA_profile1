@@ -25,7 +25,8 @@ debugger
                <textarea className={ s.textarea }
                          onChange={onPostChange} 
                          ref={newPostElement}
-                         placeholder={props.newPostText}></textarea>
+                         placeholder={props.newPostText}
+                         value = {props.newPostText}></textarea>
                <div>
                    <button className={ s.buttonStyle }
                            onClick={ addPost }>Add post</button>
