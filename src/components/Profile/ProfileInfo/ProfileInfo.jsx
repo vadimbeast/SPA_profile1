@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
+import userPhoto from "../../../assets/images/userPhoto.png";
 
 const ProfileInfo =(props) => {
 
@@ -12,7 +13,9 @@ const ProfileInfo =(props) => {
             <img src='https://www.thesun.co.uk/wp-content/uploads/2022/04/217c0052-c75a-46ce-9b65-d8e34368bc3c.jpg' />
 
             <div className={s.marpad}>
-                <img src={ props.profile.photos.large } />
+                <div>
+                    <img src={ props.profile.photos.large != null ? props.profile.photos.large : userPhoto } />
+                </div>
                 <span>{ props.profile.aboutMe }</span>
 
                 <div>

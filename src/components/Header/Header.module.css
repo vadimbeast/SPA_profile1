@@ -5,5 +5,25 @@
  }
  
  .header img {
-   width: 60px;
+    width: 60px;
+ }
+
+ .loginBlock {
+    float: right;
+    padding: 8px;
+ }
+
+.loginBlock a {
+  color: purple;
+  font-size: medium;
+  font-weight: bold;
+}
+
+ .loginBlock button {
+    border-color: rgb(23, 114, 91);
+    border-radius: 10px;
+    background-color: rgb(7, 219, 166);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
  }
