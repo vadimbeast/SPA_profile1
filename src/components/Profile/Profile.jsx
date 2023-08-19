@@ -4,11 +4,13 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostContainer from "./MyPosts/MyPostContainer";
 
 
-const Profile = () => {
-
+const Profile = (props) => {
     return (
         <div className={s.content}>
-            <ProfileInfo />
+            <ProfileInfo profile = {props.profile}
+                         follow = {props.follow}
+                         unfollow = {props.unfollow}
+                         />
          
             <MyPostContainer />
                      
