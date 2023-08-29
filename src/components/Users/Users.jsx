@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/userPhoto.png";
 import { NavLink } from "react-router-dom";
+import { followAPI, unfollowAPI } from "../../api/api";
 
 
 let Users = (props) => {
@@ -37,8 +38,12 @@ let Users = (props) => {
                      <div>
                         {
                         u.followed 
-                        ? <button onClick={ () => {props.follow(u.id)}}>Follow</button> 
-                        : <button onClick={ () => {props.unfollow(u.id)}}>Unfollow</button>
+                            ? <button onClick={ () => {
+                                unfollowAPI.deleteUser(u.id)
+                            }}>Unfollow</button> 
+                            : <button onClick={ () => {
+                                followAPI.postUser(u.id);
+                            }}>Follow</button>
                         }
                     </div>
                 </span>
