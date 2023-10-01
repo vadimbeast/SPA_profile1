@@ -3,28 +3,22 @@ import { follow, unfollow } from "../redux/usersReducer";
 
 
 const instance = axios.create({
-    withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
         "API-KEY": "259346ec-5265-4d97-9476-5ed8ee02260c"
-    }
+    },
+    withCredentials: true
 })
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`, 
-            {
-                withCredentials: true
-            })
+        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(repsonse => {
                 return repsonse.data;
             });
     },
     postUser(id) {
-        return instance.post(`follow/${id}`, {},
-        {
-            withCredentials: true
-        })
+        return instance.post(`follow/${id}`, {})
         .then(response => {
             if (response.data.resultCode === 0) {
                 follow(id);
@@ -32,14 +26,20 @@ export const usersAPI = {
         })
     },
     deleteUser(id) {
-        return instance.delete(`follow/${id}`,
-        {
-            withCredentials: true
-        })
+        return instance.delete(`follow/${id}`)
         .then(response => {
             if (response.data.resultCode === 1) {
                 unfollow(id);
             }
         })
+    },
+    getProfile(userId) {
+        return instance.get(`/profile/` + userId)
+    }
+}
+
+export const authAPI = {
+    me() {
+        return instance.get(`auth/me`)
     }
 }
