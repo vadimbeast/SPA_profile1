@@ -2,6 +2,7 @@ import React from "react";
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import userPhoto from "../../../assets/images/userPhoto.png";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo =(props) => {
 
@@ -27,7 +28,7 @@ const ProfileInfo =(props) => {
                     <button onClick={ () => {props.unfollow()}}>Unfollow</button>   
                 </div>
             </div>
-            
+            <ProfileStatus status="Hello world!"/>
             <div className={ s.contact }>
                 Контактная информация:
                 <lo>
