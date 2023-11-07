@@ -2,7 +2,7 @@ import React from "react";
 import s from './Profile.module.css';
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import { getUserProfile } from "../../redux/profileReducer";
+import { getUserProfile, getStatus, updateStatus } from "../../redux/profileReducer";
 import { follow, unfollow } from "../../redux/usersReducer";
 import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -16,6 +16,9 @@ class ProfileContainer extends React.Component {
         if (!profileId) { profileId = 29713 }
 
         this.props.getUserProfile(profileId);
+        
+        this.props.getStatus(profileId);
+        
     }
     render() { 
 
@@ -24,6 +27,8 @@ class ProfileContainer extends React.Component {
                 <Profile {...this.props} profile={this.props.profile}
                                          follow = {this.props.follow}
                                          unfollow = {this.props.unfollow}
+                                         status = {this.props.status}
+                                         updateStatus = {this.props.updateStatus}
                                          />   
             </div>
         );
@@ -31,7 +36,8 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    status: state.profilePage.status
 });
 
 function withRouter(Component) {
@@ -53,7 +59,9 @@ export default compose(
     connect (mapStateToProps, {
         follow,
         unfollow,
-        getUserProfile
+        getUserProfile,
+        updateStatus,
+        getStatus
     }),
     withRouter,
     withAuthRedirect

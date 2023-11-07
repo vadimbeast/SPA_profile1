@@ -13,6 +13,8 @@ const ProfileInfo =(props) => {
         <div>
             <img src='https://www.thesun.co.uk/wp-content/uploads/2022/04/217c0052-c75a-46ce-9b65-d8e34368bc3c.jpg' />
 
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+
             <div className={s.marpad}>
                 <div>
                     <img src={ props.profile.photos.large != null ? props.profile.photos.large : userPhoto } />
@@ -28,7 +30,7 @@ const ProfileInfo =(props) => {
                     <button onClick={ () => {props.unfollow()}}>Unfollow</button>   
                 </div>
             </div>
-            <ProfileStatus status="Hello world!"/>
+        
             <div className={ s.contact }>
                 Контактная информация:
                 <lo>
