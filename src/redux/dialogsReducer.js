@@ -1,6 +1,4 @@
 export const ADD_MESSAGE = 'ADD-MESSAGE';
-export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
-
 
 let initialState = {
     dialogs: [
@@ -27,33 +25,22 @@ let initialState = {
         {id: 5, urlImage: "https://scientificrussia.ru/images/b/teb-full.jpg"},
         {id: 6, urlImage: "https://happypik.ru/wp-content/uploads/2019/09/njashnye-kotiki8.jpg"}
     ],*/
-    
-    newMessageText: 'Введите новое сообщение...'
+     
 };
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "UPDATE-NEW-MESSAGE-TEXT":
-            return {
-                ...state,
-                newMessageText: action.body
-            };
         case "ADD-MESSAGE":
-            let body = state.newMessageText;
+            let body = action.newMessageBody;
             return {
                 ...state,
-                messages: [...state.messages, { id: 5, message: body }],
-                newMessageText: ''
+                messages: [...state.messages, { id: 5, message: body }]
             };   
         default: 
             return state;    
     }
 }
 
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
-
-export const updateNewMessageTextActionCreator = (body) => 
-    ({type: UPDATE_NEW_MESSAGE_TEXT, body: body})
-
+export const addMessageActionCreator = (newMessageBody) => ({type: ADD_MESSAGE, newMessageBody})
 
 export default dialogsReducer;

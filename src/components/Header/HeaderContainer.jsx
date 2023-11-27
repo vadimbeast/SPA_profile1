@@ -20,4 +20,4 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login
  })
-export default connect(mapStateToProps, { setAuthUserData, getAuthUserData }) (HeaderContainer);
+export default connect(mapStateToProps, { getAuthUserData }) (HeaderContainer);

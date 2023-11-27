@@ -1,43 +1,50 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
+import { reduxForm, Field } from "redux-form";
 
 
 const MyPosts = (props) => {
 
-  let postElements = 
-      props.postData.map( p => <Post message={p.message} likesCount={p.likesCount}/> )
+  let postElements =
+    props.postData.map(p => <Post message={p.message} likesCount={p.likesCount} />)
 
   let newPostElement = React.createRef();
 
-  let addPost = () => {
-    props.addPost();
+  let addNewPostText = (values) => {
+    props.addPost(values.newPostText);
   }
 
-  let onPostChange = () => {
-    let text = newPostElement.current.value;
-    props.updateNewPostText(text);
-  }
-    return (
-        <div className={s.postBlock}>
-        <h3>My post</h3>
-           <div>
-               <textarea className={ s.textarea }
-                         onChange={onPostChange} 
-                         ref={newPostElement}
-                         placeholder={props.newPostText}
-                         value = {props.newPostText}></textarea>
-               <div>
-                   <button className={ s.buttonStyle }
-                           onClick={ addPost }>Add post</button>
-               </div>                
-           </div>
-        
-        <div className={s.postBlock}>
-          { postElements }
-        </div>
+  return (
+    <div className={s.postBlock}>
+      <h3>My post</h3>
+
+      <MyPostFormRedux onSubmit={addNewPostText} />
+
+      <div className={s.postBlock}>
+        {postElements}
       </div>
-    );
+    </div>
+  );
 }
+
+const MyPostsForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        <Field className={s.textarea}
+          placeholder={"Enter your text..."}
+          name={"newPostText"}
+          component={"textarea"}
+        />
+      </div>
+      <div>
+        <button className={s.buttonStyle}>Add post</button>
+      </div>
+    </form>
+  );
+}
+
+const MyPostFormRedux = reduxForm({ form: 'addNewPostText' })(MyPostsForm)
 
 export default MyPosts;
