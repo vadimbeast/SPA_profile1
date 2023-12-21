@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { follow, setCurrentPage, unfollow} from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import { getUsers} from "../../redux/usersReducer";
+import { getUsers } from "../../redux/usersReducer";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsersSelector } from "../../redux/usersSelectors";
 
 
 class UsersContainer extends React.Component {
@@ -32,6 +33,7 @@ class UsersContainer extends React.Component {
         let slicedPages = pages.slice( curPF, curPL);
 
         return <>
+    
             { this.props.isFetching ? <Preloader/> : null }
             <Users totalUsersCount = {this.props.totalUsersCount}
                   pageSize = {this.props.pageSize} 
@@ -45,7 +47,7 @@ class UsersContainer extends React.Component {
         </>         
     }
 }
-
+/*
 let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -54,6 +56,17 @@ let mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress
+    }
+}*/
+
+let mapStateToProps = (state) => {
+    return {
+        users: getUsersSelector(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 

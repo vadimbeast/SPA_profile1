@@ -17,7 +17,7 @@ let Users = (props) => {
     let curPF = ((curP - 5) < 0) ?  0  : curP - 5 ;
     let curPL = curP + 5;
     let slicedPages = pages.slice( curPF, curPL);
-
+debugger
     return (
         <div>
             <div className={ styles.wrapperUsers }>
