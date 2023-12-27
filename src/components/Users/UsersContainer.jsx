@@ -6,7 +6,7 @@ import Preloader from "../common/Preloader/Preloader";
 import { getUsers } from "../../redux/usersReducer";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
-import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsersSelector } from "../../redux/usersSelectors";
+import { getUsersSuperSelector , getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsersSelector } from "../../redux/usersSelectors";
 
 
 class UsersContainer extends React.Component {
@@ -19,7 +19,7 @@ class UsersContainer extends React.Component {
     }
 
     render() {
-
+        console.log('RENDER');
         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
 
         let pages = [];
@@ -33,7 +33,6 @@ class UsersContainer extends React.Component {
         let slicedPages = pages.slice( curPF, curPL);
 
         return <>
-    
             { this.props.isFetching ? <Preloader/> : null }
             <Users totalUsersCount = {this.props.totalUsersCount}
                   pageSize = {this.props.pageSize} 
@@ -46,22 +45,13 @@ class UsersContainer extends React.Component {
                   />
         </>         
     }
-}
-/*
-let mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
-    }
-}*/
+} 
 
 let mapStateToProps = (state) => {
+    console.log('mapStateToProps Users');
     return {
-        users: getUsersSelector(state),
+        users: getUsersSuperSelector(state),
+        //users: getUsersSelector(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
