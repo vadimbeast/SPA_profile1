@@ -43,5 +43,10 @@
   },
   "devDependencies": {
     "react-scripts": "^5.0.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }
