@@ -17,7 +17,6 @@ let initialState = {
         {id: 3, message: 'I am fine'},
         {id: 4, message: 'Go to  Shishky'}
       ]
-     
 };
 
 const dialogsReducer = (state = initialState, action) => {
@@ -30,7 +29,7 @@ const dialogsReducer = (state = initialState, action) => {
             }; 
         case "DELETE-MESSAGE":
             return {
-                ...state, messages: state.messages.filter(p => p.id != action.id)
+                ...state, messages: state.messages.filter(p => p.id !== action.id)
             }      
         default: 
             return state;    
