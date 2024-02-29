@@ -11,11 +11,13 @@ import { getUsersSuperSelector , getCurrentPage, getFollowingInProgress, getIsFe
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const { currentPage, pageSize } = this.props;
+        this.props.getUsers(currentPage, pageSize);
     };
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        const { pageSize } = this.props;
+        this.props.getUsers(pageNumber, pageSize);
     }
 
     render() {
@@ -51,7 +53,6 @@ let mapStateToProps = (state) => {
     console.log('mapStateToProps Users');
     return {
         users: getUsersSuperSelector(state),
-        //users: getUsersSelector(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
