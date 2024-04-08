@@ -14,6 +14,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './redux/appReducer';
 import Preloader from './components/common/Preloader/Preloader';
+import store from './redux/reduxStore';
+import { Provider } from 'react-redux';
 
 
 class App extends Component {
@@ -56,5 +58,13 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default compose( /*withRouter,*/
+let AppContainer = compose( /*withRouter,*/
   connect(mapStateToProps, { initializeApp }))(App);
+
+const MainApp = (props) => {
+    return <Provider store={store}>
+            <AppContainer />
+        </Provider>
+}
+
+export default MainApp;

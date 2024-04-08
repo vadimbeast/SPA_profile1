@@ -4,41 +4,41 @@ import Preloader from "../../common/Preloader/Preloader";
 import userPhoto from "../../../assets/images/userPhoto.png";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo =(profile, status, updateStatus, follow, unfollow) => {
+const ProfileInfo =(props) => {
 
-    if (!profile) {
+    if (!props.profile) {
         return <Preloader />
     }
     return (
         <div>
             <img src='https://www.thesun.co.uk/wp-content/uploads/2022/04/217c0052-c75a-46ce-9b65-d8e34368bc3c.jpg' />
 
-            <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
 
             <div className={s.marpad}>
                 <div>
-                    <img src={ profile.photos.large != null ? profile.photos.large : userPhoto } />
+                    <img src={ props.profile.photos.large != null ? props.profile.photos.large : userPhoto } />
                 </div>
-                <span>{ profile.aboutMe }</span>
+                <span>{ props.profile.aboutMe }</span>
 
                 <div>
-                    { profile.fullName }
+                    { props.profile.fullName }
                 </div>
 
                 <div>   
-                    <button onClick={ () => {follow()}}>Follow</button> 
-                    <button onClick={ () => {unfollow()}}>Unfollow</button>   
+                    <button onClick={ () => {props.follow()}}>Follow</button> 
+                    <button onClick={ () => {props.unfollow()}}>Unfollow</button>   
                 </div>
             </div>
         
             <div className={ s.contact }>
                 Контактная информация:
                 <lo>
-                    <li>{ profile.contacts.facebook }</li>
-                    <li>{ profile.contacts.vk }</li>
-                    <li>{ profile.contacts.twitter }</li>
-                    <li>{ profile.contacts.instagram }</li>
-                    <li>{ profile.contacts.github }</li>
+                    <li>{ props.profile.contacts.facebook }</li>
+                    <li>{ props.profile.contacts.vk }</li>
+                    <li>{ props.profile.contacts.twitter }</li>
+                    <li>{ props.profile.contacts.instagram }</li>
+                    <li>{ props.profile.contacts.github }</li>
                 </lo>
             </div>
         </div>

@@ -2,3 +2,17 @@
     font-weight: bold;
     color: purple;
 }
+
+.paginator {
+    margin: 10px;
+}
+
+.pageNumber {
+    padding: 2px;
+    border: 1px solid purple;
+}
+
+.selectedPage.pageNumber {
+    font-weight: bold;
+    border-color: blueviolet;
+}

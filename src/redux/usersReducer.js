@@ -12,7 +12,7 @@ const FAKE = "FAKE";
 
 let initialState = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 100,
     currentPage: 1,
     isFetching: true,
