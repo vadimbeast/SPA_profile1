@@ -19,7 +19,7 @@ const Dialogs = (props) => {
     let addNewMessage = (values) => {
         props.addMessage(values.newMessageBody);
     }
-debugger
+    
     if (!props.isAuth) return <Navigate to="/login" />;
 
     return (

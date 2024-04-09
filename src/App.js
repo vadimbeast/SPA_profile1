@@ -4,18 +4,24 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer, { withRouter } from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
-import { Component } from 'react';
+import { Component, lazy, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './redux/appReducer';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/reduxStore';
 import { Provider } from 'react-redux';
+import { withSuspense } from './hoc/withSuspense';
+
+
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
+const DialogsContainerWithSuspense = withSuspense(DialogsContainer);
+
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
+const ProfileContainerWithSuspense = withSuspense(ProfileContainer);
 
 
 class App extends Component {
@@ -38,8 +44,8 @@ class App extends Component {
 
             <div className='app-wrapper-content'>
               <Routes className='app-wrapper-content'>
-                <Route path='/dialogs/*' element={<DialogsContainer />} />
-                <Route path='/profile/:profileId/*' element={<ProfileContainer />} />
+                <Route path='/dialogs/*' element={ <DialogsContainerWithSuspense/> } />
+                <Route path='/profile/:profileId/*' element={ <ProfileContainerWithSuspense/> }/>
                 <Route path='/users/*' element={<UsersContainer />} />
                 <Route path='/news/*' element={<News />} />
                 <Route path='/music/*' element={<Music />} />
@@ -62,9 +68,9 @@ let AppContainer = compose( /*withRouter,*/
   connect(mapStateToProps, { initializeApp }))(App);
 
 const MainApp = (props) => {
-    return <Provider store={store}>
-            <AppContainer />
-        </Provider>
+  return <Provider store={store}>
+    <AppContainer />
+  </Provider>
 }
 
 export default MainApp;
