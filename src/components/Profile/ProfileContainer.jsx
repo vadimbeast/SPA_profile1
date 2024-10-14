@@ -2,7 +2,7 @@ import React from "react";
 import s from './Profile.module.css';
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import { getUserProfile, getStatus, updateStatus } from "../../redux/profileReducer";
+import { getUserProfile, getStatus, updateStatus, savePhoto } from "../../redux/profileReducer";
 import { follow, unfollow } from "../../redux/usersReducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { compose } from "redux";
@@ -10,7 +10,7 @@ import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
 
-    componentDidMount() {
+    refreshProfile() {
         let profileId = this.props.router.params.profileId;
         if (!profileId) {
             profileId = this.props.authorizedUserId
@@ -20,20 +20,30 @@ class ProfileContainer extends React.Component {
         }
 
         this.props.getUserProfile(profileId);
-        
-        this.props.getStatus(profileId);
-        
-    }
-    render() { 
 
+        this.props.getStatus(profileId);
+    }
+
+    componentDidMount() {
+        this.refreshProfile();
+    }
+    componentDidUpdate(prevProps, prevState, snapShot) {
+        if (this.props.router.params.profileId !== prevProps.router.params.profileId) {
+            this.refreshProfile();
+        }
+    }
+    render() {
         return (
             <div className={s.content}>
-                <Profile {...this.props} profile={this.props.profile}
-                                         follow = {this.props.follow}
-                                         unfollow = {this.props.unfollow}
-                                         status = {this.props.status}
-                                         updateStatus = {this.props.updateStatus}
-                                         />   
+                <Profile {...this.props}
+                    isOwner={this.props.router.params.profileId}
+                    profile={this.props.profile}
+                    follow={this.props.follow}
+                    unfollow={this.props.unfollow}
+                    status={this.props.status}
+                    updateStatus={this.props.updateStatus}
+                    savePhoto={this.props.savePhoto}
+                />
             </div>
         );
     }
@@ -62,12 +72,13 @@ export function withRouter(Component) {
 }
 
 export default compose(
-    connect (mapStateToProps, {
+    connect(mapStateToProps, {
         follow,
         unfollow,
         getUserProfile,
         updateStatus,
-        getStatus
+        getStatus,
+        savePhoto
     }),
     withRouter
 )

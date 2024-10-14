@@ -4,15 +4,21 @@ import Preloader from "../../common/Preloader/Preloader";
 import userPhoto from "../../../assets/images/userPhoto.png";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
+
 const ProfileInfo =(props) => {
 
     if (!props.profile) {
         return <Preloader />
     }
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    }
     return (
         <div>
             <img src='https://www.thesun.co.uk/wp-content/uploads/2022/04/217c0052-c75a-46ce-9b65-d8e34368bc3c.jpg' />
-
+            { props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/> }
             <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
 
             <div className={s.marpad}>
